@@ -5,11 +5,11 @@ import PressEnter from "./shared/PressEnter";
 import { useState } from "react";
 import EmptyData from "./shared/EmptyData";
 
-const NameSection = ({ serial, title, type, placeholder }) => {
+const NameSection = ({ serial, title, type, placeholder, isRequired }) => {
   const [name, setName] = useState("");
   const [goNext, setGoNext] = useState(false);
   const handleNameSubmit = () => {
-    if (name === "") {
+    if (isRequired && name === "") {
       setGoNext(true);
     } else if (name) {
       setGoNext(false);
@@ -18,8 +18,8 @@ const NameSection = ({ serial, title, type, placeholder }) => {
   };
   return (
     <div className="center-section">
-      <div className="w-3/5 mx-auto">
-        <h2 className="text-2xl font-normal center gap-3">
+      <div className="md:w-3/5 mx-auto">
+        <h2 className="text-2xl capitalize font-normal center gap-3">
           <span className="sub-title">
             {serial} <FaArrowRight className="text-sm" />
           </span>
