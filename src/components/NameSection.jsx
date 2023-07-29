@@ -5,7 +5,14 @@ import PressEnter from "./shared/PressEnter";
 import { useState } from "react";
 import EmptyData from "./shared/EmptyData";
 
-const NameSection = ({ serial, title, type, placeholder, isRequired }) => {
+const NameSection = ({
+  serial,
+  title,
+  type,
+  placeholder,
+  isRequired,
+  subTitle,
+}) => {
   const [name, setName] = useState("");
   const [goNext, setGoNext] = useState(false);
   const handleNameSubmit = () => {
@@ -19,17 +26,18 @@ const NameSection = ({ serial, title, type, placeholder, isRequired }) => {
   return (
     <div className="center-section">
       <div className="md:w-3/5 mx-auto">
-        <h2 className="text-2xl capitalize font-normal center gap-3">
+        <h2 className="text-2xl capitalize font-normal flex items-start gap-3">
           <span className="sub-title">
             {serial} <FaArrowRight className="text-sm" />
           </span>
           {title}
         </h2>
+        {subTitle && <p className="md:pl-14">{subTitle}</p>}
         <div className="my-4 ml-4">
           <input
-            type={type}
+            type={type || "text"}
             onChange={(e) => setName(e.target.value)}
-            placeholder={placeholder}
+            placeholder={placeholder || "Type your answer here..."}
             className="input"
           />
         </div>
