@@ -73,7 +73,19 @@ AIA for Emails : $11 per inbox per month"
         opt2="LinkedIn ID-Ready AI Avatars (AIA) Premium"
         opt3="AIA for Emails"
       />
-      <MultiChoice />
+      <MultiChoice
+        serial={13}
+        tittle="What LinkedIn Automation tool are you currently using?"
+        opt1="LIA"
+        opt2="Expandi"
+        opt3="Zopto"
+        opt4="Skylead"
+        opt5="Salesflow"
+        opt6="Buzz"
+        opt7="We - Connect"
+        opt8="Other"
+        opt9="None"
+      />
       <NameSection
         isRequired={true}
         serial={14}
@@ -159,23 +171,39 @@ AIA for Emails : $11 per inbox per month"
         opt7="Other"
       />
       <QASection
-        serial={26}
+        serial={27}
         title="Do you want your Avatar to have any previous industry experiences?"
         opt1="yes"
         opt2="No"
       />
       <NameSection
-        serial={27}
+        serial={28}
         title="List up to 3 Companies or Industries you want the Avatar to have worked at before joining your company along with their positions"
         subTitle={`Example 1: Global Supply Chain Manager at Apple`}
       />
       <NameSection
-        serial={28}
+        serial={29}
         title="LinkedIn may send you OTPs (One-time Passwords) or PINs for your Avatars. To which email address do you to enable auto-forwarding so you receive them?"
       />
       <NameSection
         serial={30}
         title="Any additional comments or special requests."
+      />
+      <MultiChoice
+        serial={31}
+        tittle="From where did you hear about usThis question is required.*"
+        opt1="Google Search"
+        opt2="Facebook Group"
+        opt3="Blog/Article"
+        opt4="Referral"
+        opt5="Others"
+        isRequired={true}
+      />
+      <NameSection
+        serial={32}
+        title="Since you chose Others in the previous question, please add the details below,This question is required.*"
+        isRequired={true}
+        isSubmit={true}
       />
     </>
   );

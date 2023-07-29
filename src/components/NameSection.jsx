@@ -11,6 +11,7 @@ const NameSection = ({
   type,
   placeholder,
   isRequired,
+  isSubmit,
   subTitle,
 }) => {
   const [name, setName] = useState("");
@@ -47,9 +48,13 @@ const NameSection = ({
               <EmptyData message="Please fill this in" />
             ) : (
               <span className="center gap-3">
-                <span className="ok-btn center gap-2">
-                  Ok <FaCheck />
-                </span>
+                {isSubmit ? (
+                  <span className="ok-btn center gap-2">Submit</span>
+                ) : (
+                  <span className="ok-btn center gap-2">
+                    Ok <FaCheck />
+                  </span>
+                )}
                 <PressEnter />
               </span>
             )}
