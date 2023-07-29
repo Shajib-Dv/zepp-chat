@@ -4,6 +4,7 @@ import FeaturedLink from "./components/FeaturedLink";
 import FullAddress from "./components/FullAddress";
 import MultiChoice from "./components/MultiChoice";
 import NameSection from "./components/NameSection";
+import PhoneNumbers from "./components/PhoneNumbers";
 import QASection from "./components/QASection";
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         type="text"
         placeholder="Type your answer here"
       />
+      <PhoneNumbers />
       <FullAddress />
       <QASection serial={8} title="Are you in Europe? *" opt1="YES" opt2="NO" />
       <QASection
