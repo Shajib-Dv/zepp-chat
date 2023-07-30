@@ -6,44 +6,60 @@ import MultiChoice from "./components/MultiChoice";
 import NameSection from "./components/NameSection";
 import PhoneNumbers from "./components/PhoneNumbers";
 import QASection from "./components/QASection";
+import useChatContext from "./hooks/useChatContext";
 
 function App() {
+  const { inputDetails, optional } = useChatContext();
+
   return (
     <>
       <NameSection
+        data="firstName"
         serial={1}
         title="What's your first name?*"
         type="text"
         placeholder="Type your answer here"
         isRequired={true}
       />
-      <NameSection
-        serial={2}
-        title="Last name?*"
-        type="text"
-        placeholder="Type your answer here"
-        isRequired={true}
-      />
-      <NameSection
-        serial={3}
-        title="Email*"
-        type="email"
-        placeholder="Type your answer here"
-        isRequired={true}
-      />
-      <NameSection
-        serial={4}
-        title="Title"
-        type="text"
-        placeholder="Type your answer here"
-      />
-      <NameSection
-        serial={5}
-        title="Company name"
-        type="text"
-        placeholder="Type your answer here"
-      />
-      <PhoneNumbers />
+      {inputDetails?.firstName && (
+        <NameSection
+          data="lastName"
+          serial={2}
+          title="Last name?*"
+          type="text"
+          placeholder="Type your answer here"
+          isRequired={true}
+        />
+      )}
+      {inputDetails?.lastName && (
+        <NameSection
+          data="email"
+          serial={3}
+          title="Email*"
+          type="email"
+          placeholder="Type your answer here"
+          isRequired={true}
+        />
+      )}
+      {inputDetails?.email && (
+        <NameSection
+          data="title"
+          serial={4}
+          title="Title"
+          type="text"
+          placeholder="Type your answer here"
+        />
+      )}
+      {optional?.title && (
+        <NameSection
+          data="companyName"
+          serial={5}
+          title="Company name"
+          type="text"
+          placeholder="Type your answer here"
+        />
+      )}
+      {optional?.companyName && <PhoneNumbers />}
       <FullAddress />
       <QASection serial={8} title="Are you in Europe? *" opt1="YES" opt2="NO" />
       <QASection
@@ -53,6 +69,7 @@ function App() {
         opt2="NO"
       />
       <NameSection
+        data="vatNumber"
         serial={10}
         title="Your VAT number*"
         type="text"
@@ -89,6 +106,7 @@ AIA for Emails : $11 per inbox per month"
         opt9="None"
       />
       <NameSection
+        data="avatarCount"
         isRequired={true}
         serial={14}
         title="How many Avatars do you want to purchase?*"
@@ -103,6 +121,7 @@ AIA for Emails : $11 per inbox per month"
         opt3="Mix of both"
       />
       <NameSection
+        data="sampleURL"
         placeholder="https://"
         title="Sample LinkedIn URL you want your Avatar(s) to look like"
         serial={16}
@@ -116,6 +135,7 @@ AIA for Emails : $11 per inbox per month"
         opt3="Please add a generic banner to the profile"
       />
       <NameSection
+        data="avatarRegion"
         serial={18}
         title="Do you have any preferences for the Profile Pictures of the Avatars"
         subTitle="Example: Blonde, Asian, Indian, etc."
@@ -132,8 +152,13 @@ AIA for Emails : $11 per inbox per month"
         opt1="Yes"
         opt2="No"
       />
-      <NameSection serial={21} title="Your custom headline." />
       <NameSection
+        data="customHeadline"
+        serial={21}
+        title="Your custom headline."
+      />
+      <NameSection
+        data="avatarLocal"
         serial={22}
         title="What Location (City, State, Country) do you want the Avatar to be in?"
         subTitle="(eg: Dallas, TX, USA)"
@@ -151,12 +176,14 @@ AIA for Emails : $11 per inbox per month"
         opt8="Don't add"
       />
       <NameSection
+        data="prevFeaturedLink"
         serial={24}
         title={
           'Please add content or the link to the "Featured Link" selected in the previous answer'
         }
       />
       <NameSection
+        data="linkedInCompany"
         serial={25}
         title="LinkedIn Company Page URL you want the Avatar to be connected with"
         type={"url"}
@@ -179,15 +206,20 @@ AIA for Emails : $11 per inbox per month"
         opt2="No"
       />
       <NameSection
+        data="avatarInCompany"
         serial={28}
         title="List up to 3 Companies or Industries you want the Avatar to have worked at before joining your company along with their positions"
         subTitle={`Example 1: Global Supply Chain Manager at Apple`}
       />
       <NameSection
+        data="avatarReceiveMail"
         serial={29}
         title="LinkedIn may send you OTPs (One-time Passwords) or PINs for your Avatars. To which email address do you to enable auto-forwarding so you receive them?"
+        placeholder="Your email"
+        type="email"
       />
       <NameSection
+        data="additionalRequest"
         serial={30}
         title="Any additional comments or special requests."
       />
@@ -202,6 +234,7 @@ AIA for Emails : $11 per inbox per month"
         isRequired={true}
       />
       <NameSection
+        data="feedback"
         serial={32}
         title="Since you chose Others in the previous question, please add the details below,This question is required.*"
         isRequired={true}

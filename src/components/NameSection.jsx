@@ -4,8 +4,10 @@ import { FaArrowRight, FaCheck } from "react-icons/fa";
 import PressEnter from "./shared/PressEnter";
 import { useState } from "react";
 import EmptyData from "./shared/EmptyData";
+import useChatContext from "../hooks/useChatContext";
 
 const NameSection = ({
+  data,
   serial,
   title,
   type,
@@ -16,12 +18,22 @@ const NameSection = ({
 }) => {
   const [name, setName] = useState("");
   const [goNext, setGoNext] = useState(false);
+  const { setInputDetails, setOptional } = useChatContext();
+
   const handleNameSubmit = () => {
+    if (!isRequired) {
+      setOptional((prev) => {
+        return { ...prev, [data]: true };
+      });
+    }
+
     if (isRequired && name === "") {
       setGoNext(true);
     } else if (name) {
       setGoNext(false);
-      console.log(name);
+      setInputDetails((prevInputDetails) => {
+        return { ...prevInputDetails, [data]: name };
+      });
     }
   };
   return (
