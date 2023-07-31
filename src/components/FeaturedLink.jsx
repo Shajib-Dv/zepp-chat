@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { FaArrowRight, FaCheck } from "react-icons/fa";
+import useChatContext from "../hooks/useChatContext";
 const FeaturedLink = ({
+  data,
   serial,
   title,
   opt1,
@@ -17,9 +19,16 @@ const FeaturedLink = ({
   opt10,
 }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const { setOptional } = useChatContext();
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
+  };
+
+  const handleSelection = () => {
+    setOptional((prev) => {
+      return { ...prev, [data]: true };
+    });
   };
 
   return (
@@ -165,7 +174,7 @@ const FeaturedLink = ({
           )}
         </div>
 
-        <button className="ok-btn center gap-2">
+        <button onClick={handleSelection} className="ok-btn center gap-2">
           Ok <FaCheck />
         </button>
       </div>

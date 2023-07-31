@@ -3,11 +3,15 @@
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 
-const MultiOption = ({ option, serial }) => {
+const MultiOption = ({ option, serial, setSelected }) => {
   const [select, setSelect] = useState(false);
+  const handleSelect = () => {
+    setSelect(!select);
+    setSelected(true);
+  };
   return (
     <div
-      onClick={() => setSelect(!select)}
+      onClick={handleSelect}
       className={`center justify-between option gap-3 ${
         select ? "active-option active-option-txt" : ""
       }`}

@@ -4,8 +4,10 @@ import { FaArrowRight, FaCheck } from "react-icons/fa";
 import PressEnter from "./shared/PressEnter";
 import { useState } from "react";
 import EmptyData from "./shared/EmptyData";
+import useChatContext from "../hooks/useChatContext";
 const FullAddress = () => {
   const [error, setError] = useState({});
+  const { setInputDetails } = useChatContext();
 
   const handleAddressSubmit = (e) => {
     e.preventDefault();
@@ -29,8 +31,10 @@ const FullAddress = () => {
       });
     } else {
       setError({ err: null });
+      setInputDetails((prev) => {
+        return { ...prev, fullAddress };
+      });
     }
-    console.log(error);
   };
 
   return (

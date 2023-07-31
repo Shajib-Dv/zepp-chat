@@ -6,12 +6,23 @@ import { FaArrowRight, FaCheck } from "react-icons/fa";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import PressEnter from "./shared/PressEnter";
+import useChatContext from "../hooks/useChatContext";
 
 const PhoneNumbers = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
+  const { setInputDetails, setOptional } = useChatContext();
 
   const handleOnChange = (value) => {
     setPhoneNumber(value);
+  };
+
+  const handlePhone = () => {
+    setInputDetails((prev) => {
+      return { ...prev, phone: phoneNumber };
+    });
+    setOptional((prev) => {
+      return { ...prev, phoneNum: true };
+    });
   };
 
   return (
@@ -33,7 +44,7 @@ const PhoneNumbers = () => {
           }}
         />
         <div className="center gap-3 my-5">
-          <button className="ok-btn center gap-2">
+          <button onClick={handlePhone} className="ok-btn center gap-2">
             Ok <FaCheck />
           </button>
           <PressEnter />

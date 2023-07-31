@@ -18,7 +18,14 @@ const NameSection = ({
 }) => {
   const [name, setName] = useState("");
   const [goNext, setGoNext] = useState(false);
-  const { setInputDetails, setOptional } = useChatContext();
+  const {
+    setInputDetails,
+    setOptional,
+    inputDetails,
+    optional,
+    question,
+    multiChoice,
+  } = useChatContext();
 
   const handleNameSubmit = () => {
     if (!isRequired) {
@@ -36,6 +43,12 @@ const NameSection = ({
       });
     }
   };
+
+  const handleDataToStore = () => {
+    const storedData = { inputDetails, optional, question, multiChoice };
+    console.log(storedData);
+  };
+
   return (
     <div className="center-section">
       <div className="md:w-3/5 mx-auto">
@@ -61,7 +74,12 @@ const NameSection = ({
             ) : (
               <span className="center gap-3">
                 {isSubmit ? (
-                  <span className="ok-btn center gap-2">Submit</span>
+                  <span
+                    onClick={handleDataToStore}
+                    className="ok-btn center gap-2"
+                  >
+                    Submit
+                  </span>
                 ) : (
                   <span className="ok-btn center gap-2">
                     Ok <FaCheck />

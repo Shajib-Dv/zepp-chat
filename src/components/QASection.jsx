@@ -2,19 +2,35 @@
 
 import { useState } from "react";
 import { FaArrowRight, FaCheck } from "react-icons/fa";
+import useChatContext from "../hooks/useChatContext";
 
-const QASection = ({ serial, title, subTitle, opt1, opt2, opt3, opt4 }) => {
+const QASection = ({
+  isRequired,
+  option,
+  serial,
+  title,
+  subTitle,
+  opt1,
+  opt2,
+  opt3,
+  opt4,
+}) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const { setQuestion, setOptional } = useChatContext();
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
   };
 
   const handleOkButtonClick = () => {
-    if (selectedOption) {
-      console.log(selectedOption);
-    } else {
-      alert("Please select an option before clicking Ok."); //TODO
+    if ((!isRequired, selectedOption)) {
+      setOptional((prev) => {
+        return { ...prev, [option]: true };
+      });
+    } else if (selectedOption && isRequired) {
+      setQuestion((prev) => {
+        return { ...prev, [option]: true };
+      });
     }
   };
 
