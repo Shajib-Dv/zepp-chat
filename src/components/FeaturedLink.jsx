@@ -18,17 +18,26 @@ const FeaturedLink = ({
   opt9,
   opt10,
 }) => {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const { setOptional } = useChatContext();
+  const [selectedOption, setSelectedOption] = useState({});
+  const [optionStore, setOptionStore] = useState({});
+  const { setOptional, setInputDetails } = useChatContext();
 
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
+  const handleOptionClick = (serial, option) => {
+    setSelectedOption({ serial, option });
+    setOptionStore({
+      [serial]: option,
+    });
   };
 
   const handleSelection = () => {
     setOptional((prev) => {
       return { ...prev, [data]: true };
     });
+    if (selectedOption.serial) {
+      setInputDetails((prev) => {
+        return { ...prev, [data]: [optionStore] };
+      });
+    }
   };
 
   return (
@@ -45,131 +54,151 @@ const FeaturedLink = ({
           {opt1 && (
             <div
               className={`center justify-between option gap-3 ${
-                selectedOption === "A" ? "active-option active-option-txt" : ""
+                selectedOption?.serial === "A"
+                  ? "active-option active-option-txt"
+                  : ""
               }`}
-              onClick={() => handleOptionClick("A")}
+              onClick={() => handleOptionClick("A", opt1)}
             >
               <p className="center gap-3">
                 <span className="option-txt">A</span> {opt1}
               </p>
-              {selectedOption === "A" && <FaCheck />}
+              {selectedOption?.serial === "A" && <FaCheck />}
             </div>
           )}
           {opt2 && (
             <div
               className={`center option gap-3 justify-between ${
-                selectedOption === "B" ? "active-option active-option-txt" : ""
+                selectedOption?.serial === "B"
+                  ? "active-option active-option-txt"
+                  : ""
               }`}
-              onClick={() => handleOptionClick("B")}
+              onClick={() => handleOptionClick("B", opt2)}
             >
               <p className="center gap-3">
                 <span className="option-txt">B</span> {opt2}
               </p>
-              {selectedOption === "B" && <FaCheck />}
+              {selectedOption?.serial === "B" && <FaCheck />}
             </div>
           )}
           {opt3 && (
             <div
               className={`center option gap-3 justify-between ${
-                selectedOption === "C" ? "active-option active-option-txt" : ""
+                selectedOption?.serial === "C"
+                  ? "active-option active-option-txt"
+                  : ""
               }`}
-              onClick={() => handleOptionClick("C")}
+              onClick={() => handleOptionClick("C", opt3)}
             >
               <p className="center gap-3">
                 <span className="option-txt">C</span> {opt3}
               </p>
-              {selectedOption === "C" && <FaCheck />}
+              {selectedOption?.serial === "C" && <FaCheck />}
             </div>
           )}
           {opt4 && (
             <div
               className={`center option gap-3 justify-between ${
-                selectedOption === "D" ? "active-option active-option-txt" : ""
+                selectedOption?.serial === "D"
+                  ? "active-option active-option-txt"
+                  : ""
               }`}
-              onClick={() => handleOptionClick("D")}
+              onClick={() => handleOptionClick("D", opt4)}
             >
               <p className="center gap-3">
                 <span className="option-txt">D</span> {opt4}
               </p>
-              {selectedOption === "D" && <FaCheck />}
+              {selectedOption?.serial === "D" && <FaCheck />}
             </div>
           )}
           {opt5 && (
             <div
               className={`center option gap-3 justify-between ${
-                selectedOption === "E" ? "active-option active-option-txt" : ""
+                selectedOption?.serial === "E"
+                  ? "active-option active-option-txt"
+                  : ""
               }`}
-              onClick={() => handleOptionClick("E")}
+              onClick={() => handleOptionClick("E", opt5)}
             >
               <p className="center gap-3">
                 <span className="option-txt">E</span> {opt5}
               </p>
-              {selectedOption === "E" && <FaCheck />}
+              {selectedOption?.serial === "E" && <FaCheck />}
             </div>
           )}
           {opt6 && (
             <div
               className={`center option gap-3 justify-between ${
-                selectedOption === "F" ? "active-option active-option-txt" : ""
+                selectedOption?.serial === "F"
+                  ? "active-option active-option-txt"
+                  : ""
               }`}
-              onClick={() => handleOptionClick("F")}
+              onClick={() => handleOptionClick("F", opt6)}
             >
               <p className="center gap-3">
                 <span className="option-txt">F</span> {opt6}
               </p>
-              {selectedOption === "F" && <FaCheck />}
+              {selectedOption?.serial === "F" && <FaCheck />}
             </div>
           )}
           {opt7 && (
             <div
               className={`center option gap-3 justify-between ${
-                selectedOption === "G" ? "active-option active-option-txt" : ""
+                selectedOption?.serial === "G"
+                  ? "active-option active-option-txt"
+                  : ""
               }`}
-              onClick={() => handleOptionClick("G")}
+              onClick={() => handleOptionClick("G", opt7)}
             >
               <p className="center gap-3">
                 <span className="option-txt">G</span> {opt7}
               </p>
-              {selectedOption === "G" && <FaCheck />}
+              {selectedOption?.serial === "G" && <FaCheck />}
             </div>
           )}
           {opt8 && (
             <div
               className={`center option gap-3 justify-between ${
-                selectedOption === "H" ? "active-option active-option-txt" : ""
+                selectedOption?.serial === "H"
+                  ? "active-option active-option-txt"
+                  : ""
               }`}
-              onClick={() => handleOptionClick("H")}
+              onClick={() => handleOptionClick("H", opt8)}
             >
               <p className="center gap-3">
                 <span className="option-txt">H</span> {opt8}
               </p>
-              {selectedOption === "H" && <FaCheck />}
+              {selectedOption?.serial === "H" && <FaCheck />}
             </div>
           )}
           {opt9 && (
             <div
               className={`center option gap-3 justify-between ${
-                selectedOption === "I" ? "active-option active-option-txt" : ""
+                selectedOption?.serial === "I"
+                  ? "active-option active-option-txt"
+                  : ""
               }`}
-              onClick={() => handleOptionClick("I")}
+              onClick={() => handleOptionClick("I", opt9)}
             >
               <p className="center gap-3">
                 <span className="option-txt">I</span> {opt9}
               </p>
-              {selectedOption === "I" && <FaCheck />}
+              {selectedOption?.serial === "I" && <FaCheck />}
             </div>
           )}
           {opt10 && (
             <div
               className={`center option gap-3 justify-between ${
-                selectedOption === "J" ? "active-option active-option-txt" : ""
+                selectedOption?.serial === "J"
+                  ? "active-option active-option-txt"
+                  : ""
               }`}
-              onClick={() => handleOptionClick("J")}
+              onClick={() => handleOptionClick("J", opt10)}
             >
               <p className="center gap-3">
                 <span className="option-txt">J</span> {opt10}
               </p>
-              {selectedOption === "J" && <FaCheck />}
+              {selectedOption?.serial === "J" && <FaCheck />}
             </div>
           )}
         </div>

@@ -21,10 +21,14 @@ const MultiChoice = ({
   opt9,
   opt10,
 }) => {
-  const { setMultiChoice, setOptional } = useChatContext();
+  const { setMultiChoice, setOptional, setInputDetails, storeMultiChose } =
+    useChatContext();
   const [selected, setSelected] = useState(false);
 
   const handleSelection = () => {
+    setInputDetails((prev) => {
+      return { ...prev, [data]: storeMultiChose };
+    });
     if (isRequired && selected) {
       setMultiChoice((prev) => {
         return { ...prev, [data]: true };

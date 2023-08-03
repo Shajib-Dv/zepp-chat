@@ -7,12 +7,14 @@ import NameSection from "./components/NameSection";
 import PhoneNumbers from "./components/PhoneNumbers";
 import QASection from "./components/QASection";
 import useChatContext from "./hooks/useChatContext";
+import ProgressBar from "react-scroll-progress-bar";
 
 function App() {
   const { inputDetails, optional, multiChoice } = useChatContext();
 
   return (
     <>
+      <ProgressBar />
       <div>
         <NameSection
           data="firstName"

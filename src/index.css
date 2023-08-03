@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 #root {
-  @apply max-w-7xl mx-auto;
+  @apply max-w-screen-2xl mx-auto;
 }
 
 .center-section {

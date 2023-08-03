@@ -2,13 +2,19 @@
 
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
+import useChatContext from "../../hooks/useChatContext";
 
 const MultiOption = ({ option, serial, setSelected }) => {
   const [select, setSelect] = useState(false);
+
+  const { storeMultiChose, setStoreMultiChose } = useChatContext();
+
   const handleSelect = () => {
     setSelect(!select);
     setSelected(true);
+    setStoreMultiChose({ ...storeMultiChose, [serial]: option });
   };
+
   return (
     <div
       onClick={handleSelect}

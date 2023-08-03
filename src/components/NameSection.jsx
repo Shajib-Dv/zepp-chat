@@ -18,19 +18,15 @@ const NameSection = ({
 }) => {
   const [name, setName] = useState("");
   const [goNext, setGoNext] = useState(false);
-  const {
-    setInputDetails,
-    setOptional,
-    inputDetails,
-    optional,
-    question,
-    multiChoice,
-  } = useChatContext();
+  const { setInputDetails, setOptional, inputDetails } = useChatContext();
 
   const handleNameSubmit = () => {
     if (!isRequired) {
       setOptional((prev) => {
         return { ...prev, [data]: true };
+      });
+      setInputDetails((prevInputDetails) => {
+        return { ...prevInputDetails, [data]: name };
       });
     }
 
@@ -45,8 +41,9 @@ const NameSection = ({
   };
 
   const handleDataToStore = () => {
-    const storedData = { inputDetails, optional, question, multiChoice };
-    console.log(storedData);
+    if (name) {
+      console.log(inputDetails);
+    }
   };
 
   return (
