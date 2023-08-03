@@ -47,7 +47,6 @@ const PhoneNumbers = () => {
           <button onClick={handlePhone} className="ok-btn center gap-2">
             Ok <FaCheck />
           </button>
-          <PressEnter />
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 /** @format */
 
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import FeaturedLink from "./components/FeaturedLink";
 import FullAddress from "./components/FullAddress";
 import MultiChoice from "./components/MultiChoice";
@@ -316,6 +317,14 @@ AIA for Emails : $11 per inbox per month"
             isSubmit={true}
           />
         )}
+      </div>
+      <div className="center fixed right-0 bottom-10 bg-[#0445AF] rounded-md">
+        <button className="p-2 border-r ok-btn">
+          <FaAngleUp />
+        </button>
+        <button className="p-2 ok-btn">
+          <FaAngleDown />
+        </button>
       </div>
     </>
   );

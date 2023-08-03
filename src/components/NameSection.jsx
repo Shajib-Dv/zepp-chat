@@ -5,6 +5,7 @@ import PressEnter from "./shared/PressEnter";
 import { useState } from "react";
 import EmptyData from "./shared/EmptyData";
 import useChatContext from "../hooks/useChatContext";
+import Swal from "sweetalert2";
 
 const NameSection = ({
   data,
@@ -40,9 +41,38 @@ const NameSection = ({
     }
   };
 
+  const handleKeyPress = (e) => {
+    e.preventDefault();
+    if (e.key === "Enter") {
+      if (isSubmit) {
+        handleDataToStore();
+      } else {
+        handleNameSubmit();
+      }
+    }
+  };
+
   const handleDataToStore = () => {
+    setInputDetails((prevInputDetails) => {
+      return { ...prevInputDetails, [data]: name };
+    });
     if (name) {
-      console.log(inputDetails);
+      fetch("https://zeppstr-server.vercel.app/chat", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(inputDetails),
+      })
+        .then((res) => res.json())
+        .then((resData) => {
+          if (resData.insertedId) {
+            Swal.fire(
+              "Congratulations",
+              "You have completed successfully",
+              "success"
+            );
+            window.location.reload();
+          }
+        });
     }
   };
 
@@ -60,6 +90,7 @@ const NameSection = ({
           <input
             type={type || "text"}
             onChange={(e) => setName(e.target.value)}
+            onKeyUp={handleKeyPress}
             placeholder={placeholder || "Type your answer here..."}
             className="input"
           />
