@@ -38,6 +38,12 @@ const FeaturedLink = ({
         return { ...prev, [data]: [optionStore] };
       });
     }
+    setTimeout(() => {
+      window.scrollTo({
+        top: window.scrollY + window.innerHeight,
+        behavior: "smooth",
+      });
+    }, 500);
   };
 
   return (

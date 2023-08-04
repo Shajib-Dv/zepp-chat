@@ -5,7 +5,6 @@ import { FaArrowRight, FaCheck } from "react-icons/fa";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import PressEnter from "./shared/PressEnter";
 import useChatContext from "../hooks/useChatContext";
 
 const PhoneNumbers = () => {
@@ -23,6 +22,12 @@ const PhoneNumbers = () => {
     setOptional((prev) => {
       return { ...prev, phoneNum: true };
     });
+    setTimeout(() => {
+      window.scrollTo({
+        top: window.scrollY + window.innerHeight,
+        behavior: "smooth",
+      });
+    }, 500);
   };
 
   return (

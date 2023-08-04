@@ -12,10 +12,23 @@ import ProgressBar from "react-scroll-progress-bar";
 
 function App() {
   const { inputDetails, optional, multiChoice } = useChatContext();
+  const handleScrollUp = () => {
+    window.scrollTo({
+      top: window.scrollY - window.innerHeight,
+      behavior: "smooth",
+    });
+  };
+  const handleScrollDown = () => {
+    window.scrollTo({
+      top: window.scrollY + window.innerHeight,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
       <ProgressBar />
+      <div className="bg-[#5492f576] w-full h-1 fixed top-0"></div>
       <div>
         <NameSection
           data="firstName"
@@ -319,10 +332,10 @@ AIA for Emails : $11 per inbox per month"
         )}
       </div>
       <div className="center fixed right-0 bottom-10 bg-[#0445AF] rounded-md">
-        <button className="p-2 border-r ok-btn">
+        <button onClick={handleScrollUp} className="p-2 border-r ok-btn">
           <FaAngleUp />
         </button>
-        <button className="p-2 ok-btn">
+        <button onClick={handleScrollDown} className="p-2 ok-btn">
           <FaAngleDown />
         </button>
       </div>

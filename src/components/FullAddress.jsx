@@ -34,6 +34,12 @@ const FullAddress = () => {
       setInputDetails((prev) => {
         return { ...prev, fullAddress };
       });
+      setTimeout(() => {
+        window.scrollTo({
+          top: window.scrollY + window.innerHeight,
+          behavior: "smooth",
+        });
+      }, 500);
     }
   };
 

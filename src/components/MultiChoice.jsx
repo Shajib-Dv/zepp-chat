@@ -38,6 +38,12 @@ const MultiChoice = ({
         return { ...prev, [data]: true };
       });
     }
+    setTimeout(() => {
+      window.scrollTo({
+        top: window.scrollY + window.innerHeight,
+        behavior: "smooth",
+      });
+    }, 500);
   };
 
   return (

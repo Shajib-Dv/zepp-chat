@@ -39,6 +39,12 @@ const NameSection = ({
         return { ...prevInputDetails, [data]: name };
       });
     }
+    setTimeout(() => {
+      window.scrollTo({
+        top: window.scrollY + window.innerHeight,
+        behavior: "smooth",
+      });
+    }, 500);
   };
 
   const handleKeyPress = (e) => {

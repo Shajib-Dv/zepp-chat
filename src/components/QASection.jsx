@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaArrowRight, FaCheck } from "react-icons/fa";
 import useChatContext from "../hooks/useChatContext";
 
@@ -43,6 +43,17 @@ const QASection = ({
       });
     }
   };
+
+  useEffect(() => {
+    handleOkButtonClick();
+
+    setTimeout(() => {
+      window.scrollTo({
+        top: window.scrollY + window.innerHeight,
+        behavior: "smooth",
+      });
+    }, 500);
+  }, [selectedOption.serial]);
 
   return (
     <div className="center-section">
