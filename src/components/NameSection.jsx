@@ -2,7 +2,7 @@
 
 import { FaArrowRight, FaCheck } from "react-icons/fa";
 import PressEnter from "./shared/PressEnter";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import EmptyData from "./shared/EmptyData";
 import useChatContext from "../hooks/useChatContext";
 import Swal from "sweetalert2";
@@ -19,7 +19,9 @@ const NameSection = ({
 }) => {
   const [name, setName] = useState("");
   const [goNext, setGoNext] = useState(false);
-  const { setInputDetails, setOptional, inputDetails } = useChatContext();
+  const inputRef = useRef(null);
+  const { setInputDetails, setOptional, inputDetails, isValidEmail } =
+    useChatContext();
 
   const handleNameSubmit = () => {
     if (!isRequired) {
@@ -33,6 +35,8 @@ const NameSection = ({
 
     if (isRequired && name === "") {
       setGoNext(true);
+    } else if (inputRef.current?.type === "email" && !isValidEmail(name)) {
+      return setGoNext(true);
     } else if (name) {
       setGoNext(false);
       setInputDetails((prevInputDetails) => {
@@ -82,6 +86,29 @@ const NameSection = ({
     }
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            inputRef.current.focus();
+          }
+        });
+      },
+      { threshold: 1 }
+    );
+
+    if (inputRef.current) {
+      observer.observe(inputRef.current);
+    }
+
+    return () => {
+      if (inputRef.current) {
+        observer.unobserve(inputRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="center-section">
       <div className="md:w-3/5 mx-auto">
@@ -95,6 +122,7 @@ const NameSection = ({
         <div className="my-4 ml-4">
           <input
             type={type || "text"}
+            ref={inputRef}
             onChange={(e) => setName(e.target.value)}
             onKeyUp={handleKeyPress}
             placeholder={placeholder || "Type your answer here..."}
@@ -102,9 +130,15 @@ const NameSection = ({
           />
         </div>
         <div className="ml-4 center gap-3">
-          <button onClick={handleNameSubmit} className="center gap-2">
-            {goNext && !name ? (
-              <EmptyData message="Please fill this in" />
+          <div className="center gap-2">
+            {goNext && (inputRef.current.type === "email" || !name) ? (
+              <EmptyData
+                message={
+                  inputRef.current.type === "email"
+                    ? "invalid email !"
+                    : "Please fill this in"
+                }
+              />
             ) : (
               <span className="center gap-3">
                 {isSubmit ? (
@@ -115,14 +149,17 @@ const NameSection = ({
                     Submit
                   </span>
                 ) : (
-                  <span className="ok-btn center gap-2">
+                  <span
+                    onClick={handleNameSubmit}
+                    className="ok-btn center gap-2"
+                  >
                     Ok <FaCheck />
                   </span>
                 )}
                 <PressEnter />
               </span>
             )}
-          </button>
+          </div>
         </div>
       </div>
     </div>

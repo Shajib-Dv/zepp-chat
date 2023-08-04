@@ -29,7 +29,7 @@ function App() {
     <>
       <ProgressBar />
       <div className="bg-[#5492f576] w-full h-1 fixed top-0"></div>
-      <div>
+      <div className="px-10 md:px-0">
         <NameSection
           data="firstName"
           serial={1}
