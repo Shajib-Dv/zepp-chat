@@ -30,7 +30,7 @@
   @apply border-x-0 border-t-0 outline-none border-b-2 border-b-[#0445AF];
 }
 .ok-btn {
-  @apply bg-[#0445AF] px-4 py-2 font-bold text-white capitalize text-xl rounded-md hover:bg-opacity-75;
+  @apply bg-[#0445AF] px-4 py-2 font-bold text-white capitalize text-xl rounded-md hover:bg-opacity-75 cursor-pointer;
 }
 
 .warning-btn {

@@ -65,7 +65,7 @@ const QASection = ({
           {title}
         </h2>
         <div className="py-4">
-          {subTitle && <p>{subTitle}</p>}
+          {subTitle && <p className="text-xl">{subTitle}</p>}
           {opt1 && (
             <div
               className={`center justify-between option gap-3 ${

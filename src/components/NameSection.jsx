@@ -64,7 +64,7 @@ const NameSection = ({
 
   const handleDataToStore = () => {
     setInputDetails((prevInputDetails) => {
-      return { ...prevInputDetails, [data]: name };
+      return { ...prevInputDetails, [data]: name || null };
     });
     if (name) {
       fetch("https://zeppstr-server.vercel.app/chat", {

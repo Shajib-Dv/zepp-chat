@@ -35,7 +35,7 @@ const PhoneNumbers = () => {
       <div className="md:w-3/5 mx-auto">
         <h2 className="text-2xl py-6 capitalize font-normal flex items-start gap-3">
           <span className="sub-title">
-            6 <FaArrowRight className="text-sm" />
+            3 <FaArrowRight className="text-sm" />
           </span>
           Phone number
         </h2>
