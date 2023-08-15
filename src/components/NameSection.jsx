@@ -66,24 +66,25 @@ const NameSection = ({
     setInputDetails((prevInputDetails) => {
       return { ...prevInputDetails, [data]: name || null };
     });
-    if (name) {
-      fetch("https://zeppstr-server.vercel.app/chat", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(inputDetails),
-      })
-        .then((res) => res.json())
-        .then((resData) => {
-          if (resData.insertedId) {
-            Swal.fire(
-              "Congratulations",
-              "You have completed successfully",
-              "success"
-            );
-            window.location.reload();
-          }
-        });
-    }
+    console.log(inputDetails);
+    // if (name) {
+    //   fetch("https://zeppstr-server.vercel.app/chat", {
+    //     method: "POST",
+    //     headers: { "content-type": "application/json" },
+    //     body: JSON.stringify(inputDetails),
+    //   })
+    //     .then((res) => res.json())
+    //     .then((resData) => {
+    //       if (resData.insertedId) {
+    //         Swal.fire(
+    //           "Congratulations",
+    //           "You have completed successfully",
+    //           "success"
+    //         );
+    //         window.location.reload();
+    //       }
+    //     });
+    // }
   };
 
   useEffect(() => {

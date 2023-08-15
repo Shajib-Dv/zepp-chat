@@ -29,7 +29,7 @@ const QASection = ({
   const handleOkButtonClick = () => {
     if (selectedOption.serial) {
       setInputDetails((prev) => {
-        return { ...prev, [option]: [optionStore] };
+        return { ...prev, [option]: optionStore };
       });
     }
 

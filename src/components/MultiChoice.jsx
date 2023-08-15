@@ -26,6 +26,7 @@ const MultiChoice = ({
   const [selected, setSelected] = useState(false);
 
   const handleSelection = () => {
+    console.log(storeMultiChose);
     setInputDetails((prev) => {
       return { ...prev, [data]: storeMultiChose };
     });

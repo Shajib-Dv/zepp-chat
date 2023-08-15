@@ -11,8 +11,10 @@ const MultiOption = ({ option, serial, setSelected }) => {
 
   const handleSelect = () => {
     setSelect(!select);
-    setSelected(true);
-    setStoreMultiChose({ ...storeMultiChose, [serial]: option });
+    if (!select) {
+      setSelected(true);
+      setStoreMultiChose({ ...storeMultiChose, [serial]: option });
+    }
   };
 
   return (
